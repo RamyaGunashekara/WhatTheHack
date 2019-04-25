@@ -1,0 +1,325 @@
+<html>
+	<head>
+		<title>
+	   Result
+		</title>
+		
+	<!--	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
+  <link rel="stylesheet" href="libs\bootstrap\css\bootstrap.css">
+		<script src="libs\jquery.js"></script>
+		<script src="libs\bootstrap\js\bootstrap.min.js"></script>
+		<script src="libs\angular.min.js"></script>
+		<link rel="stylesheet" href="judge.css" />
+		<script>
+		$(document).ready(function(){
+		
+		console.dir("ready");
+		
+		var response;
+	var teamnumber=localStorage.getItem('teamnumber');
+		
+		var response;
+		var deactivate;
+		//ajax call to get the active team
+		
+		
+		
+		setInterval(function(){
+			$.ajax({
+  url: "https://sportscentrala72f56074.hana.ondemand.com/WhatTheHack/services/activeTeam.xsjs",
+ method:'GET',
+}).done(function(data) {
+    response= data [0].Team_Number;
+    console.dir("ajax sent"+response);
+    
+
+		
+
+		if(!teamnumber){
+		    //First Time
+		    
+		    console.dir("no storage");
+		    $(".teamname").text(response);
+		    if(response){
+		        console.dir("value");
+		        console.dir(response+"response");
+		    localStorage.setItem('teamnumber',response);
+		     deactivate=0;
+		     $(".comment").css('display','none');
+		    }
+		    
+		    
+		}
+		
+		else if(response == parseInt(teamnumber)){
+		    //We are in sync
+		     console.dir(" storage");
+		   console.dir("matches");
+		    deactivate=0;
+		    $(".teamname").text(response);
+		    $(".comment").css('display','none');
+		    
+		}
+		else{
+		    
+		    //block the page
+		    console.dir("block");
+		   deactivate=1;
+		   $(".teamname").text(teamnumber);
+		   $(".comment").text("Demo will Start in a Few Minutes");
+		   $(".comment").css('display','block');
+		    
+		}
+		
+
+		
+		
+		
+});	//end of done
+
+
+
+} , 2000 );
+		
+   
+   
+
+		
+		$(".circleBase").click(function(){
+		console.log("clicked");
+		$(".circleBase").addClass("unclick");
+		$(this).removeClass("unclick");
+		$(this).addClass("click");
+		
+ q1 = $('> .center', this).text();
+console.dir(q1);
+		
+		
+		}); 
+		
+		
+			$(".circleBase1").click(function(){
+		console.log("clicked");
+		$(".circleBase1").addClass("unclick");
+		$(this).removeClass("unclick");
+		$(this).addClass("click");
+		
+
+		 q2 = $('> .center', this).text();
+console.dir(q2);
+		
+		}); 
+		
+		
+		
+			$(".circleBase2").click(function(){
+		console.log("clicked");
+		$(".circleBase2").addClass("unclick");
+		$(this).removeClass("unclick");
+		$(this).addClass("click");
+		
+ q3 = $('> .center', this).text();
+console.dir(q3);
+		
+		
+		}); 
+		
+		
+		
+		
+		$(".circleBase3").click(function(){
+		console.log("clicked");
+		$(".circleBase3").addClass("unclick");
+		$(this).removeClass("unclick");
+		$(this).addClass("click");
+		
+ q4 = $('> .center', this).text();
+console.dir(q4);
+		
+		
+		}); 
+		
+		
+		
+		$(".submit").click(function(event){
+		console.dir("ready");
+		if(deactivate==1){
+		    event.preventDefault();
+		}
+		
+		else{
+		window.location.href="thankyou.html";
+		var result ={
+		    'q1':q1,
+		    'q2':q2,
+		    'q3':q3,
+		    'q4':q4,
+		    'num':response
+		    
+		};
+		console.dir(result);
+			$.ajax({
+  url: "https://sportscentrala72f56074.hana.ondemand.com/WhatTheHack/services/InsertJudges.xsjs",
+ method:'GET',
+ data: result,
+ async:false
+}).done(function() {
+  console.log("inserted");
+});
+	
+	
+		}//End of else
+		});
+		
+		});
+		</script>
+	</head>
+	<body>
+	
+	
+	
+	
+	<div class="container-fluid">
+	
+	<div class="row">
+	<div class="team col-lg-10 col-lg-offset-1">
+	Team Number:<div class="teamname">01</div>
+	<div class="comment" style="display:none"></div>
+	</div>
+	</div>
+	<div class="rating">
+	<div class="row">
+		<div class="question col-lg-10 col-lg-offset-1 col-sm-12"><p>Is this a Digital Transformation Scenario?</p></div>
+	</div>
+	<div class="row">
+	
+	<div class="parent col-lg-10 col-lg-offset-1 col-sm-12">
+	
+	<div class="circleBase unclick type1"><div class="center" id="one">1</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase unclick type1"><div class="center" id="two">2</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase unclick type1"><div class="center" id="three">3</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase unclick type1"><div class="center" id="four">4</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase unclick type1"><div class="center" id="five">5</div></div>
+
+
+	</div><!--end of parent-->
+	
+	</div><!-- end of row-->
+	
+	</div><!--end of rating -->
+	
+	
+	
+	<div class="rating">
+	<div class="row">
+		<div class="question col-lg-10 col-lg-offset-1 col-sm-12"><p>What is the product innovation quotient?</p></div>
+	</div>
+	<div class="row">
+	
+	<div class="parent col-lg-10 col-lg-offset-1 col-sm-12">
+	
+	<div class="circleBase1 unclick type1"><div class="center" id="one">1</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase1 unclick type1"><div class="center" id="two">2</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase1 unclick type1"><div class="center" id="three">3</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase1 unclick type1"><div class="center" id="four">4</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase1 unclick type1"><div class="center" id="five">5</div></div>
+
+
+	</div><!--end of parent-->
+	
+	</div><!-- end of row-->
+	
+	</div><!-- end of rating -->
+	
+	
+	
+	<div class="rating">
+	<div class="row">
+		<div class="question col-lg-10 col-lg-offset-1"><p>Can this be positioned as product which has a future potential?</p></div>
+	</div>
+	<div class="row">
+	
+	<div class="parent col-lg-10 col-lg-offset-1">
+	
+	<div class="circleBase2 unclick type1"><div class="center" id="one">1</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase2 unclick type1"><div class="center" id="two">2</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase2 unclick type1"><div class="center" id="three">3</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase2 unclick type1"><div class="center" id="four">4</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase2 unclick type1"><div class="center" id="five">5</div></div>
+
+
+	</div><!--end of parent-->
+	
+	</div><!-- end of row-->
+	</div><!-- end of rating -->
+	
+	
+	<div class="rating">
+	<div class="row">
+		<div class="question col-lg-10 col-lg-offset-1 col-sm-10 "><p>Rate the Overall Experience</p></div>
+	</div>
+	<div class="row">
+	
+	<div class="parent col-lg-10 col-lg-offset-1 col-sm-12">
+	
+	<div class="circleBase3 unclick type1"><div class="center" id="one">1</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase3 unclick type1"><div class="center" id="two">2</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase3 unclick type1"><div class="center" id="three">3</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase3 unclick type1"><div class="center" id="four">4</div></div>
+	<div class="span"> </div>
+	
+	<div class="circleBase3 unclick type1"><div class="center" id="five">5</div></div>
+
+
+	</div><!--end of parent-->
+	
+	</div><!-- end of row-->
+	
+	</div><!-- end of rating -->
+	
+	
+	<div class="row">
+	
+	<div class="submit col-lg-1 col-lg-offset-4 col-sm-1 col-sm-offset-5">submit</div>
+	
+	
+	
+	
+	
+	
+	</div>
+	</body>
+</html>

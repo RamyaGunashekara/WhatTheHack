@@ -1,0 +1,186 @@
+<html>
+	<head>
+		<title>
+		Audience html Page
+		</title>
+		
+		<!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
+  
+  
+  <link rel="stylesheet" href="libs\bootstrap\css\bootstrap.css">
+		<script src="libs\jquery.js"></script>
+		<script src="libs\bootstrap\js\bootstrap.min.js"></script>
+		<script src="libs\angular.min.js"></script>
+		<link rel="stylesheet" href="aud.css" />
+		<script>
+		$(document).ready(function(){
+		
+		
+		var response;
+	
+		//ajax call to get the active team
+		
+		
+		
+	
+			$.ajax({
+  url: "https://sportscentrala72f56074.hana.ondemand.com/WhatTheHack/services/activeTeam.xsjs",
+ method:'GET',
+}).done(function(data) {
+    response= data [0].Team_Number;
+    console.dir("ajax sent"+response);
+		   $(".teamnumb").text(response);
+		   localStorage.setItem('teamnumber',response);
+		    
+		
+		
+
+		
+		
+		
+});	//end of done
+
+
+
+
+		
+		
+		$(".like").click(function(event){
+		
+		console.dir("inclick");
+		
+		
+		
+		localStorage.setItem('teamnumber',response);
+			localStorage.setItem('result', 'liked');
+		   
+		var data ={
+		'num':response,
+		'like':'1',
+		'dislike':'0'
+		
+		}
+		//ajax call to the service with number
+		$.ajax({
+  url: "https://sportscentrala72f56074.hana.ondemand.com/WhatTheHack/services/likeDislike.xsjs",
+ method:'GET',
+ data: data,
+ async:false
+}).done(function() {
+  console.log("inserted");
+});
+		
+		
+		$(".zoomin").fadeIn();
+		for ( var i = 0; i <= 1.3; i = i + 0.1 ) {
+			$('.zoomin').css({
+				'transform': 'scale( ' + i + ', ' + i + ')'
+			});	
+		}
+		
+		
+	$(".zoomin").delay(500).fadeOut();
+	
+	setTimeout(function(){window.location.href="thankuaudience.html";},500);
+		
+		//$(".zoomin").hide(2000);
+		
+	
+				
+		});
+		
+		$(".dislike").click(function(event){
+		    
+		    
+		    
+		   
+		localStorage.setItem('result', 'disliked');
+		var data ={
+		'num':response,
+		'like':'0',
+		'dislike':'1'
+		
+		}
+			$.ajax({
+  url: "https://sportscentrala72f56074.hana.ondemand.com/WhatTheHack/services/likeDislike.xsjs",
+ method:'GET',
+ data: data
+}).done(function() {
+  console.log("inserted");
+});
+		
+		$(".zoomind").fadeIn();
+		for ( var i = 0; i <= 1.3; i = i + 0.1 ) {
+			$('.zoomind').css({
+				'transform': 'scale( ' + i + ', ' + i + ')'
+			});	
+		}
+		
+		
+	$(".zoomind").delay(500).fadeOut();
+	setTimeout(function(){window.location.href="thankuaudience.html";},1000);
+	
+	
+	
+		
+		});
+		
+		
+		
+	
+		
+		
+		});
+		</script>
+	</head>
+	<body>
+	
+	<div class="container-fluid">
+    
+    
+    <div class="parentm">
+    
+    <div class="wrapper">
+    
+	<div class="row marginBelow">
+	<div class="ques col-xs-12">
+		What do you think about team <div class="teamnumb">01</div>?
+	</div>
+	</div>
+	
+	
+	<div class="row marginBelow">
+	<div class="col-xs-12">
+	<div class="like">
+	<img src="svg/svg/liked_idle.svg" class="likeimg" width="200px" height="200px"/>
+	<img  class="zoomin" src="svg/svg/liked.svg" width="100px" height="100px"/>
+	</div>
+	</div>
+	</div>
+	
+	<div class="row marginBelow">
+	<div class=" col-xs-12">
+	<div class="dislike">
+	<img src="svg/svg/disliked_idle.svg" class="dislikedimg"  width="200px" height="200px"/>
+	<img src="svg/svg/disliked.svg"  class="zoomind" width="100px"  height="100px"/>
+	</div>
+	</div></div>
+	
+	
+	
+	
+	
+	
+	</div>
+	
+
+	
+	</div>
+	
+	</div>
+	
+	</body>
+</html>

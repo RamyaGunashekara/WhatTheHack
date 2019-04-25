@@ -1,0 +1,52 @@
+<html>
+
+
+	<head>
+		<title>
+			thankyou
+		</title>
+		
+		
+		
+		<style>
+		body{
+		background: linear-gradient(to bottom,#EC7400,#F0AB00);
+		}
+		.thank{
+		font-family: Roboto Regular;
+		color:white;
+		font-size:70px;
+		padding:5% 5% 1% 5%;
+		margin:10% 6% 0.2% 20%;
+		}
+		
+		.rating{
+		
+		font-family: Roboto Light;
+		color:white;
+		font-size:40px;
+		margin:0% 6% 0% 14%;
+		
+		}
+		</style>
+		<script>
+			var teamnumb=localStorage.getItem('teamnumber');
+		console.dir("teamnumber is"+teamnumb);
+		//ajax call comes to check if next team is done
+	
+		    localStorage.setItem('teamnumber', ( parseInt(teamnumb) + 1).toString() );
+		    console.dir( localStorage.getItem('teamnumb'));
+		  
+		    if(teamnumb <10){
+		setTimeout(function(){window.location.href="judges.html"},1200);
+		    }
+		</script>
+	</head>
+	
+	
+	<body>
+	
+	<div class="thank">Thank you</div>
+	<div class="rating">Your rating has been recorded.</div>
+	</body>
+</html>

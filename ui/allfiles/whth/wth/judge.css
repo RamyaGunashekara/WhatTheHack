@@ -1,0 +1,108 @@
+.parent{
+position:relative;
+
+}
+
+
+.circleBase,.circleBase1,.circleBase2,.circleBase3,.circleBase4 {
+    border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+}
+
+.circleBase,.circleBase1,.circleBase2,.circleBase3,.circleBase4:hover {
+   cursor:pointer;
+}
+
+.type1 {
+
+	display:inline-block;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: 3px solid white;
+}
+
+
+
+body{
+background: linear-gradient(to bottom,#EC7400,#F0AB00);
+
+}
+
+.span{
+display:inline-block;
+width:150px;
+height:1px;
+border-bottom: solid 1px white;
+
+}
+
+
+.center{
+
+
+//color:#F0AB00;
+    display: block;
+    text-align: -webkit-center;
+margin-top:30%;
+ 
+}
+
+.click{
+background:blue;
+border-color:blue;
+color:white;
+
+}
+
+.unclick{
+
+background:white;
+border-color:white	;
+color:#F0AB00;
+}
+
+.team{
+color:white;
+font-family: Roboto Regular;
+font-size:20px;
+margin-top:4%;
+margin-bottom:4%;
+}
+
+
+.question{
+font-family: Roboto Regular;
+color:white;
+font-size:20px;
+
+
+}
+
+.rating{
+margin-bottom:3%;
+}
+
+
+.submit{
+text-align:center;
+color:white;
+background:blue;
+border-radius:20px;
+padding:1% 1% 1% 1%;
+
+}
+.submit:hover{
+cursor:pointer;
+
+
+}
+
+
+.teamname {
+    display:inline-block;
+    color:white;
+    font-size:30px;
+    font-weight:bold;
+    
+}
